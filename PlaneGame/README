@@ -1,0 +1,90 @@
+测试pygame模块
+python -m pygame.examples.aliens
+
+
+pygame.Rect
+Rect(x,y,width,height)->Rect
+
+# hero_rect = pygame.Rect(100, 500, 120, 125)
+# print("英雄的原点 %d %d " % (hero_rect.x, hero_rect.y))
+# print("英雄的尺寸 %d %d" % (hero_rect.width, hero_rect.height))
+# print("hero size : %d %d" % hero_rect.size)
+
+
+创建游戏主窗口
+pygame.display 用于创建、管理游戏窗口
+    pygame.display.set_mode()   初始化游戏显示窗口
+    pygame.display.update()     刷新屏幕内容
+
+    set_mode()方法
+    参数
+       set_mode(resolution=(0,0),flag=0,depth=0)
+       resolution   指定屏幕的宽和高，默认创建的窗口大小和屏幕大小一致
+       flag         指定屏幕的附加选项，例如是否全屏等，默认不需要传递
+       depth        表示颜色的位数，默认自动匹配
+    返回值
+        游戏的窗口对象
+
+    update()方法
+
+图像绘制
+    pygame.image.load(文件路径)     加载图像的数据
+    blit(图像，位置)                 将图像绘制到指定位置
+    pygame.display.update()        更新
+
+
+游戏时钟
+    pygame.time.Clock   刷新帧率
+        1.在游戏初始化创建时钟对象
+        2.在游戏循环中让始终对象调用tick(帧率)方法
+
+监听事件
+    事件event
+    pygame.event.get()
+    返回值为 list列表
+
+精灵和精灵组
+    pygame.sprite.Sprite 存储图像数据image和位置rect的对象
+        image
+        rect
+        update(*args)    更新精灵位置
+        kill()      从所有组中删除
+    pygame.sprite.Group
+        __init__(self,*sprite)
+        add(*sprites)   向组中添加精灵
+        sprites()   返回所有精灵列表
+        update(*args)   让组中所有精灵调用update()方法
+        draw(Surface)   将族中所有精灵的image，会知道Surface的rect位置
+
+     -———————————————————————————————————————————-————————--
+    |                   游戏                                 |
+    |  游戏初始化                           游戏循环            |
+    |   创建精灵                       精灵组.update()         |
+    |  创建精灵组                      精灵组.draw(screen)      |
+    |                               pygame.display.update()  |
+     -———————————————————————————————————————————-————————---
+
+使用游戏精灵和精灵组创建敌机
+
+
+使用定时器添加敌机
+    pygame.time.set_timer(event_id,milliseconds)
+        event_id:   pygame.USEREVENT
+
+
+英雄
+    pygame.key.get.pressed()    移动
+
+    移动英雄位置
+       捕获键盘按键
+       方式1:event.type==pygame.KEYDOWN event.key==pygame.K_RIGHT 右键
+       方式2:keys_pressed=pygame.key.get).pressed()   元组
+            keys_pressed[pygame.K_RIGHT]
+
+碰撞检测
+    pygame.sprite.groupcollide()
+
+    groupcollide(group1,gourp2,dokill1,dokill2,collided=None)
+
+
+

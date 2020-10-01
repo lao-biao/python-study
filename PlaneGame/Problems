@@ -1,0 +1,7 @@
+- libpng warning: iCCP: known incorrect sRGB profile
+    原因是新版的libpng增强了检查，发出警告。此警告可以忽略。
+    若要消除此警告则要使用v4的色彩配置。
+    GIMP sRGB v4 色彩配置，修改当前图片的色彩配置，设为默认。
+
+    解决方法：
+        下载ImageMagick：https://imagemagick.org/script/download.php#windows
